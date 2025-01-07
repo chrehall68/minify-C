@@ -6,7 +6,7 @@ jobs:
     strategy:
       matrix:
         os: [macos-latest, windows-latest, ubuntu-latest]
-
+        # os: [ubuntu-latest]
     runs-on: ${{ matrix.os }}
 
     steps:
@@ -26,14 +26,18 @@ jobs:
           pip install -r requirements.txt
           pip install nuitka
 
+      - name: Install Ubuntu Dependencies
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update && sudo apt-get install patchelf
+
       - name: Compile
         run: |
-          python3 -m nuitka src/main.py --disable-cache="all"
+          python3 -m nuitka src/main.py --disable-cache="all" --mode=standalone
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
         with:
           name: ${{ runner.os }} Build
           path: | # match what's created for the 3 OSes
-            *.exe
-            *.bin
+            main.dist/*
