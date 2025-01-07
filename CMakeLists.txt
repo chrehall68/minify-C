@@ -6,6 +6,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_library(boost_regex libboost_regex.a)
 find_package(BISON)
+make_directory(${CMAKE_CURRENT_BINARY_DIR}/bison_outputs)
 BISON_TARGET(PG src/generator/grammar.y ${CMAKE_CURRENT_BINARY_DIR}/bison_outputs/pg.cpp DEFINES_FILE ${CMAKE_CURRENT_BINARY_DIR}/bison_outputs/pg.hpp)
 
 # compile this stuff once
@@ -31,6 +32,7 @@ target_include_directories(generator PRIVATE include ${CMAKE_CURRENT_BINARY_DIR}
 target_link_libraries(generator parser_lib)
 
 # produce grammar
+make_directory(${CMAKE_CURRENT_BINARY_DIR}/lang)
 add_custom_command(
     OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/lang/cgrammar.hpp
     COMMAND generator ${CMAKE_CURRENT_SOURCE_DIR}/src/lang/ebnf_grammar.g -o ${CMAKE_CURRENT_BINARY_DIR}/lang/cgrammar.hpp
