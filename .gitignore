@@ -1,4 +1,8 @@
-__pycache__
-parsetab.py
-cparser.py
+# vscode
 .vscode/
+
+# build outputs and generated files
+build/
+pg.cpp
+pg.hpp
+cgrammar.hpp

@@ -1,4 +1,3 @@
-
     primary_expression : IDENTIFIER
         | CONSTANT
         | STRINGLITERAL
