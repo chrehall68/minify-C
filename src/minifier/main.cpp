@@ -4,6 +4,7 @@
 #include <argp.h>
 #include <lang/clexer.hpp>
 #include <fstream>
+#include <sstream>
 #include "cgrammar.hpp"
 using namespace std;
 

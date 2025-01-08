@@ -4,6 +4,7 @@
 #include <generator/parser.hpp>
 #include <generator/context.hpp>
 #include <argp.h>
+#include <sstream>
 #include <cstring>
 using namespace std;
 

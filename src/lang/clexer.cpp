@@ -1,4 +1,5 @@
 #include <lang/clexer.hpp>
+#include <sstream>
 using namespace std;
 Lexer makeCLexer()
 {
@@ -82,7 +83,7 @@ Lexer makeCLexer()
     string stringLiteralRegex = "[L]?\"(" + schar + ")*\"";
     string headerNameRegex = "(<(" + hchar + ")+>)|(\"(" + qchar + ")+\")";
 
-        vector<string> punctuators = {
+    vector<string> punctuators = {
         "\\[",
         "\\]",
         "\\(",
