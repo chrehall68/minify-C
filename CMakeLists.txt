@@ -48,4 +48,4 @@ add_executable(
 )
 target_include_directories(minifier PRIVATE include ${CMAKE_CURRENT_BINARY_DIR}/lang)
 add_dependencies(minifier cgrammar)
-target_link_libraries(minifier PRIVATE parse_util "-static-libstdc++")
+target_link_libraries(minifier PRIVATE parse_util "-static-libstdc++" "-static-libgcc")
