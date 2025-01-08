@@ -94,7 +94,6 @@ pair<int, int> dfs(ASTNode *cur, int curMaxSymbol, map<string, string> &symbolMa
                 else
                 {
                     // shouldn't happen?
-                    cout << "Unknown leaf type" << endl;
                     throw runtime_error("Unknown leaf type");
                 }
             }
@@ -309,11 +308,9 @@ int main(int argc, char **argv)
     {
         return 1;
     }
-    cout << "Parsed successfully" << endl;
 
     // minify
     shared_ptr<ASTNode> node = *result.val;
-    cout << node->print() << endl;
     minify(node.get());
     vector<Token> minifiedTokens = extractTokens(node.get());
     string minifiedString = minifyTokens(minifiedTokens);
