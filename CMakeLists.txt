@@ -11,15 +11,15 @@ BISON_TARGET(PG src/generator/grammar.y ${CMAKE_CURRENT_BINARY_DIR}/bison_output
 
 # compile this stuff once
 add_library(
-    parser_lib
+    parse_util
     STATIC
     src/generator/lexer.cpp
     src/generator/parser.cpp
     src/generator/ast.cpp
     src/generator/types.cpp
 )
-target_include_directories(parser_lib PRIVATE include)
-target_link_libraries(parser_lib PUBLIC boost_regex)
+target_include_directories(parse_util PRIVATE include)
+target_link_libraries(parse_util PUBLIC boost_regex)
 
 # stage one - build the generator application
 add_executable(generator 
@@ -27,9 +27,9 @@ add_executable(generator
     src/generator/context.cpp
     ${BISON_PG_OUTPUTS}
 )
-add_dependencies(generator parser_lib)
+add_dependencies(generator parse_util)
 target_include_directories(generator PRIVATE include ${CMAKE_CURRENT_BINARY_DIR}/bison_outputs)
-target_link_libraries(generator parser_lib)
+target_link_libraries(generator parse_util)
 
 # produce grammar
 make_directory(${CMAKE_CURRENT_BINARY_DIR}/lang)
@@ -48,4 +48,4 @@ add_executable(
 )
 target_include_directories(minifier PRIVATE include ${CMAKE_CURRENT_BINARY_DIR}/lang)
 add_dependencies(minifier cgrammar)
-target_link_libraries(minifier parser_lib)
+target_link_libraries(minifier PRIVATE parse_util "-static-libstdc++")
