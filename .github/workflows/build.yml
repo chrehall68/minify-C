@@ -32,4 +32,4 @@ jobs:
         with:
           name: ${{ runner.os }} Build
           path: | # match what's created for the 3 OSes
-            build/golfC-1.1.1-Linux.deb
+            build/golfC-1.2.0-Linux.deb

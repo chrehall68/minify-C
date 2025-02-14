@@ -17,7 +17,8 @@ RUN mkdir build && \
 
 # runnable
 FROM ubuntu:24.04 AS executable
-COPY --from=build /work/build/golfC-1.1.1-Linux.deb /
+COPY --from=build /work/build/golfC-1.2.0-Linux.deb /
 RUN apt-get update && \
-    apt install /golfC-1.1.1-Linux.deb clang-17 -y
+    apt install /golfC-1.2.0-Linux.deb clang-17 -y && \
+    rm -rf /var/lib/apt/lists/*
 ENTRYPOINT [ "minifier", "--", "-I", "/usr/lib/clang/17/include" ]

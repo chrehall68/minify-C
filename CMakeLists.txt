@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.22.1)
-project(GolfC VERSION 1.1.1)
+project(GolfC VERSION 1.2.0)
 
 # configuration
 set(LLVMVersion "17" CACHE STRING "Which LLVM and Clang version to use")
